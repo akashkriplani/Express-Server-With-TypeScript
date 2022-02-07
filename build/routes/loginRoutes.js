@@ -21,5 +21,11 @@ router.get('/login', (req, res) => {
 });
 router.post('/login', (req, res) => {
     const { email, password } = req.body;
-    res.send(email + password);
+    if (email && password && email === 'alice@facegle.io' && password === 'alice123') {
+        req.session = { loggedIn: true };
+        res.redirect('/');
+    }
+    else {
+        res.send('Invalid email or password');
+    }
 });
