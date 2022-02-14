@@ -12,26 +12,13 @@ function requireAuth(req, res, next) {
 }
 var router = (0, express_1.Router)();
 exports.router = router;
-router.post('/login', function (req, res) {
-    var _a = req.body, email = _a.email, password = _a.password;
-    if (email &&
-        password &&
-        email === 'alice@facegle.io' &&
-        password === 'alice123') {
-        req.session = { loggedIn: true };
-        res.redirect('/');
-    }
-    else {
-        res.send('Invalid email or password');
-    }
-});
 router.get('/', function (req, res) {
     var _a;
     if ((_a = req.session) === null || _a === void 0 ? void 0 : _a.loggedIn) {
         res.send("\n      <div>\n        You are logged in\n      </div>\n      <a href=\"/logout\">Logout</a>\n    ");
     }
     else {
-        res.send("\n      <div>\n        You are not logged in\n      </div>\n      <a href=\"/login\">Login</a>\n    ");
+        res.send("\n      <div>\n        You are not logged in\n      </div>\n      <a href=\"/auth/login\">Login</a>\n    ");
     }
 });
 router.get('/logout', function (req, res) {
