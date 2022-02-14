@@ -17,7 +17,12 @@ const router = Router();
 
 router.post('/login', (req: RequestWithBody, res: Response) => {
   const { email, password } = req.body;
-  if (email && password && email === 'alice@facegle.io' && password === 'alice123') {
+  if (
+    email &&
+    password &&
+    email === 'alice@facegle.io' &&
+    password === 'alice123'
+  ) {
     req.session = { loggedIn: true };
     res.redirect('/');
   } else {
@@ -33,7 +38,6 @@ router.get('/', (req: Request, res: Response) => {
       </div>
       <a href="/logout">Logout</a>
     `);
-
   } else {
     res.send(`
       <div>
@@ -47,10 +51,10 @@ router.get('/', (req: Request, res: Response) => {
 router.get('/logout', (req: Request, res: Response) => {
   req.session = undefined;
   res.redirect('/');
-})
+});
 
 router.get('/protected', requireAuth, (req: Request, res: Response) => {
   res.send('Welcome to the protected route, logged in user.');
-})
+});
 
 export { router };

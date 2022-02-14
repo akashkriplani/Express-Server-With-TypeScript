@@ -8,7 +8,9 @@ import './controllers/LoginController';
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieSession({ keys: ['thiscanbeanyencryptedorunencryptedstringvalue'] }));
+app.use(
+  cookieSession({ keys: ['thiscanbeanyencryptedorunencryptedstringvalue'] })
+);
 app.use(router);
 app.use(AppRouter.getInstance());
 

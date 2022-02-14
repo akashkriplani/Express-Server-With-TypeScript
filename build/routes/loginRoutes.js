@@ -14,7 +14,10 @@ var router = (0, express_1.Router)();
 exports.router = router;
 router.post('/login', function (req, res) {
     var _a = req.body, email = _a.email, password = _a.password;
-    if (email && password && email === 'alice@facegle.io' && password === 'alice123') {
+    if (email &&
+        password &&
+        email === 'alice@facegle.io' &&
+        password === 'alice123') {
         req.session = { loggedIn: true };
         res.redirect('/');
     }
